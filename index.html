@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <title>Shraddha Beauty Salon</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fffaf7;
+      --bg-soft:#fdf1ec;
+      --card:#ffffff;
+      --text:#2d1f26;
+      --muted:#745f69;
+      --primary:#a53d67;
+      --primary-dark:#7f2b4e;
+      --line:rgba(165,61,103,0.14);
+      --shadow:0 18px 45px rgba(92, 38, 61, 0.10);
+      --radius:26px;
+      --transition:all .35s ease;
+
+      /* desktop design width */
+      --desktop-width: 1280;
+      --desktop-width-px: 1280px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(180deg,#fffaf7 0%, #fff4f0 100%);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    /* ---------- DESKTOP SCALE SYSTEM ---------- */
+    .phone-desktop-stage{
+      width:100%;
+      position:relative;
+    }
+
+    .phone-desktop-scale{
+      width:var(--desktop-width-px);
+      transform-origin:top left;
+      will-change:transform;
+    }
+
+    .desktop-fixed-width{
+      width:var(--desktop-width-px);
+      margin:0 auto;
+    }
+    /* ---------- END SCALE SYSTEM ---------- */
+
+    .container{
+      width:min(1180px, 92%);
+      margin:auto;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,250,247,0.88);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .navbar{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .logo-badge{
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--primary),#d46a8f);
+      color:#fff;
+      font-size:22px;
+      box-shadow:0 12px 24px rgba(165,61,103,.24);
+      flex-shrink:0;
+    }
+
+    .logo-text h1{
+      font-family:'Playfair Display',serif;
+      font-size:1.2rem;
+      line-height:1;
+      color:var(--primary-dark);
+      margin-bottom:3px;
+    }
+
+    .logo-text span{
+      font-size:.76rem;
+      color:var(--muted);
+      display:block;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      font-weight:600;
+      font-size:.95rem;
+      color:var(--text);
+      position:relative;
+    }
+
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0;
+      height:2px;
+      background:var(--primary);
+      transition:var(--transition);
+    }
+
+    .nav-links a:hover::after{
+      width:100%;
+    }
+
+    .nav-cta{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:none;
+      cursor:pointer;
+      border-radius:999px;
+      padding:14px 22px;
+      font-weight:700;
+      transition:var(--transition);
+      text-align:center;
+      white-space:nowrap;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,var(--primary),#cc5f89);
+      color:#fff;
+      box-shadow:0 14px 28px rgba(165,61,103,.22);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-outline{
+      border:1px solid rgba(165,61,103,.18);
+      background:#fff;
+      color:var(--primary-dark);
+    }
+
+    .btn-outline:hover{
+      background:#fff2f7;
+      transform:translateY(-2px);
+    }
+
+    .menu-btn{
+      display:none;
+      background:none;
+      border:none;
+      color:var(--primary-dark);
+      font-size:1.8rem;
+      cursor:pointer;
+      line-height:1;
+    }
+
+    section{
+      padding:78px 0;
+    }
+
+    .section-head{
+      text-align:center;
+      margin-bottom:44px;
+    }
+
+    .section-head .tag{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--primary);
+      font-weight:800;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      margin-bottom:14px;
+    }
+
+    .section-head h3{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,4vw,3rem);
+      color:var(--primary-dark);
+      margin-bottom:10px;
+      line-height:1.1;
+    }
+
+    .section-head p{
+      max-width:760px;
+      margin:auto;
+      color:var(--muted);
+    }
+
+    .hero{
+      padding-top:56px;
+      overflow:hidden;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:9px 16px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--primary);
+      font-weight:800;
+      font-size:.82rem;
+      margin-bottom:18px;
+      box-shadow:0 10px 20px rgba(0,0,0,.04);
+    }
+
+    .hero h2{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.3rem,5vw,4.4rem);
+      line-height:1.05;
+      color:var(--primary-dark);
+      margin-bottom:16px;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:1rem;
+      max-width:620px;
+      margin-bottom:26px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:28px;
+    }
+
+    .hero-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .stat{
+      background:rgba(255,255,255,.85);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px 16px;
+      box-shadow:var(--shadow);
+    }
+
+    .stat strong{
+      display:block;
+      color:var(--primary-dark);
+      font-size:1.35rem;
+      font-weight:800;
+    }
+
+    .stat span{
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .hero-visual{
+      position:relative;
+    }
+
+    .hero-main-card{
+      border-radius:34px;
+      overflow:hidden;
+      box-shadow:0 24px 60px rgba(102,41,66,.18);
+      background:#fff;
+    }
+
+    .hero-main-card img{
+      width:100%;
+      height:620px;
+      object-fit:cover;
+    }
+
+    .floating-card{
+      position:absolute;
+      background:rgba(255,255,255,.95);
+      border:1px solid rgba(255,255,255,.8);
+      backdrop-filter:blur(10px);
+      box-shadow:0 18px 45px rgba(112,48,77,.12);
+      border-radius:20px;
+      padding:15px 16px;
+      max-width:250px;
+    }
+
+    .floating-card.top{
+      top:16px;
+      left:-10px;
+    }
+
+    .floating-card.bottom{
+      bottom:18px;
+      right:-14px;
+    }
+
+    .floating-card h4{
+      color:var(--primary-dark);
+      font-size:.98rem;
+      margin-bottom:4px;
+      line-height:1.2;
+    }
+
+    .floating-card p{
+      color:var(--muted);
+      font-size:.86rem;
+      line-height:1.45;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      align-items:center;
+    }
+
+    .about-image,
+    .about-content,
+    .service-card,
+    .why-card,
+    .gallery-item,
+    .location-card,
+    .map-card,
+    .booking-info,
+    .booking-form-card,
+    .contact-card{
+      box-shadow:var(--shadow);
+    }
+
+    .about-image{
+      border-radius:28px;
+      overflow:hidden;
+    }
+
+    .about-image img{
+      width:100%;
+      height:520px;
+      object-fit:cover;
+    }
+
+    .about-content{
+      background:rgba(255,255,255,.82);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:34px;
+    }
+
+    .about-content h4{
+      font-family:'Playfair Display',serif;
+      font-size:2rem;
+      color:var(--primary-dark);
+      margin-bottom:12px;
+    }
+
+    .about-content p{
+      color:var(--muted);
+      margin-bottom:12px;
+    }
+
+    .about-points{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .about-points div{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:14px 16px;
+      font-weight:600;
+    }
+
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .service-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:26px;
+      overflow:hidden;
+      transition:var(--transition);
+    }
+
+    .service-card:hover{
+      transform:translateY(-6px);
+    }
+
+    .service-image{
+      position:relative;
+      height:220px;
+      overflow:hidden;
+    }
+
+    .service-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .5s ease;
+    }
+
+    .service-card:hover .service-image img{
+      transform:scale(1.06);
+    }
+
+    .service-badge{
+      position:absolute;
+      top:14px;
+      left:14px;
+      background:rgba(255,255,255,.95);
+      color:var(--primary-dark);
+      font-size:.78rem;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+    }
+
+    .service-content{
+      padding:22px;
+    }
+
+    .service-icon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:1.45rem;
+      background:linear-gradient(135deg,#ffe7ef,#fff4f6);
+      color:var(--primary);
+      margin-bottom:14px;
+    }
+
+    .service-content h4{
+      font-size:1.25rem;
+      color:var(--primary-dark);
+      margin-bottom:8px;
+      line-height:1.2;
+    }
+
+    .service-content p{
+      color:var(--muted);
+      font-size:.95rem;
+      margin-bottom:16px;
+    }
+
+    .service-list{
+      list-style:none;
+      display:grid;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .service-list li{
+      padding-bottom:10px;
+      border-bottom:1px dashed rgba(165,61,103,.12);
+      font-size:.94rem;
+    }
+
+    .service-actions{
+      display:flex;
+      justify-content:flex-end;
+    }
+
+    .book-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:none;
+      border-radius:999px;
+      padding:12px 16px;
+      background:linear-gradient(135deg,var(--primary),#cf6b92);
+      color:#fff;
+      font-weight:700;
+      cursor:pointer;
+      transition:var(--transition);
+      white-space:nowrap;
+    }
+
+    .book-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .why-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .why-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:26px 20px;
+      text-align:center;
+    }
+
+    .why-icon{
+      width:64px;
+      height:64px;
+      border-radius:20px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 14px;
+      background:linear-gradient(135deg,#fff0f5,#ffe6ef);
+      color:var(--primary);
+      font-size:1.55rem;
+    }
+
+    .why-card h4{
+      color:var(--primary-dark);
+      margin-bottom:8px;
+    }
+
+    .why-card p{
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .gallery-item{
+      min-height:250px;
+      border-radius:22px;
+      overflow:hidden;
+    }
+
+    .gallery-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .booking-wrap{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    .booking-info{
+      background:linear-gradient(135deg,#8a2f57,#c25982);
+      color:#fff;
+      border-radius:28px;
+      padding:34px;
+      position:sticky;
+      top:100px;
+    }
+
+    .booking-info h4{
+      font-family:'Playfair Display',serif;
+      font-size:2rem;
+      margin-bottom:12px;
+    }
+
+    .booking-info p{
+      color:rgba(255,255,255,.9);
+      margin-bottom:16px;
+    }
+
+    .booking-info ul{
+      list-style:none;
+      display:grid;
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    .booking-socials,
+    .multi-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .booking-socials a,
+    .multi-links a{
+      padding:12px 15px;
+      border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.2);
+      color:#fff;
+      font-weight:700;
+      font-size:.92rem;
+      white-space:nowrap;
+    }
+
+    .multi-links.dark a{
+      background:#fff;
+      border:1px solid rgba(165,61,103,.16);
+      color:var(--primary-dark);
+    }
+
+    .booking-form-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:34px;
+    }
+
+    .booking-form-card h4{
+      font-family:'Playfair Display',serif;
+      font-size:2rem;
+      color:var(--primary-dark);
+      margin-bottom:8px;
+    }
+
+    .booking-form-card p{
+      color:var(--muted);
+      margin-bottom:20px;
+    }
+
+    form{
+      display:grid;
+      gap:16px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .field{
+      display:grid;
+      gap:8px;
+    }
+
+    .field label{
+      font-weight:700;
+      color:var(--primary-dark);
+      font-size:.94rem;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      padding:15px 16px;
+      border-radius:16px;
+      border:1px solid rgba(165,61,103,.18);
+      outline:none;
+      font:inherit;
+      background:#fff;
+      transition:var(--transition);
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 4px rgba(165,61,103,.08);
+    }
+
+    textarea{
+      min-height:130px;
+      resize:vertical;
+    }
+
+    .submit-btn{
+      width:fit-content;
+      margin-top:4px;
+    }
+
+    .map-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .location-card,
+    .map-card,
+    .contact-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+    }
+
+    .location-card{
+      padding:28px;
+    }
+
+    .location-card h4{
+      font-family:'Playfair Display',serif;
+      font-size:2rem;
+      line-height:1.1;
+      color:var(--primary-dark);
+      margin-bottom:12px;
+    }
+
+    .location-card p{
+      color:var(--muted);
+      margin-bottom:14px;
+    }
+
+    .map-frame{
+      width:100%;
+      height:100%;
+      min-height:420px;
+      border:0;
+      display:block;
+    }
+
+    .contact-cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .contact-card{
+      padding:26px;
+      text-align:center;
+    }
+
+    .contact-card .icon{
+      width:60px;
+      height:60px;
+      margin:0 auto 14px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#fff0f5,#ffe6ef);
+      color:var(--primary);
+      font-size:1.45rem;
+    }
+
+    .contact-card h4{
+      color:var(--primary-dark);
+      margin-bottom:8px;
+    }
+
+    .contact-card p,
+    .contact-card a{
+      color:var(--muted);
+      font-size:.95rem;
+      word-break:break-word;
+    }
+
+    footer{
+      padding:28px 0 40px;
+      border-top:1px solid var(--line);
+      background:rgba(255,255,255,.6);
+      margin-top:40px;
+    }
+
+    .footer-wrap{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .footer-wrap p{
+      color:var(--muted);
+    }
+
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+
+    .footer-links a{
+      color:var(--primary-dark);
+      font-weight:600;
+    }
+
+    .floating-whatsapp{
+      position:fixed;
+      right:16px;
+      bottom:16px;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#25D366;
+      color:#fff;
+      font-size:1.55rem;
+      box-shadow:0 18px 28px rgba(37,211,102,.25);
+      z-index:1001;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:.8s ease;
+    }
+
+    .reveal.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ---------- KEEP DESKTOP LAYOUT ON TABLET/PHONE ---------- */
+    @media (max-width: 1279px){
+      body.mobile-desktop-mode{
+        overflow-x:hidden;
+      }
+
+      body.mobile-desktop-mode .phone-desktop-stage{
+        overflow:hidden;
+      }
+
+      body.mobile-desktop-mode .phone-desktop-scale{
+        transform:scale(var(--phoneScale));
+      }
+
+      body.mobile-desktop-mode .floating-whatsapp{
+        width:52px;
+        height:52px;
+        font-size:1.35rem;
+        right:10px;
+        bottom:10px;
+      }
+    }
+
+    /* desktop default, no scaling */
+    @media (min-width: 1280px){
+      .phone-desktop-scale{
+        transform:none !important;
+        height:auto !important;
+      }
+    }
+
+    /* very tiny phones */
+    @media (max-width: 480px){
+      body.mobile-desktop-mode .floating-whatsapp{
+        width:48px;
+        height:48px;
+        font-size:1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-desktop-stage" id="phoneDesktopStage">
+    <div class="phone-desktop-scale" id="phoneDesktopScale">
+      <div class="desktop-fixed-width">
+        <header>
+          <div class="container navbar">
+            <div class="logo">
+              <div class="logo-badge">✂</div>
+              <div class="logo-text">
+                <h1>Shraddha Beauty Salon</h1>
+                <span>Hair • Skin • Nails • Laser Care</span>
+              </div>
+            </div>
+
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle Menu">☰</button>
+
+            <nav class="nav-links" id="navLinks">
+              <a href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#services">Services</a>
+              <a href="#gallery">Gallery</a>
+              <a href="#booking">Book Now</a>
+              <a href="#location">Location</a>
+              <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="nav-cta">
+              <a href="#booking" class="btn btn-outline">Book Appointment</a>
+            </div>
+          </div>
+        </header>
+
+        <main>
+          <section class="hero" id="home">
+            <div class="container hero-grid">
+              <div>
+                <span class="eyebrow">Premium Beauty Experience</span>
+                <h2>Glow, Style & Confidence for Every Occasion</h2>
+                <p>
+                  Welcome to <strong>Shraddha Beauty Salon</strong> — your destination for elegant beauty care,
+                  flawless hair styling, rejuvenating facials, stylish nails, scalp treatments,
+                  hair repair care, and advanced <strong>laser hair removal</strong>.
+                </p>
+
+                <div class="hero-actions">
+                  <a href="#booking" class="btn btn-primary">Book Your Service</a>
+                  <a href="#services" class="btn btn-outline">Explore Services</a>
+                </div>
+
+                <div class="hero-stats">
+                  <div class="stat">
+                    <strong>16+</strong>
+                    <span>Years of Experience</span>
+                  </div>
+                  <div class="stat">
+                    <strong>1000+</strong>
+                    <span>Happy Clients</span>
+                  </div>
+                  <div class="stat">
+                    <strong>Beauty + Laser</strong>
+                    <span>Complete Care</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-visual">
+                <div class="hero-main-card">
+                  <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop" alt="Salon beauty model">
+                </div>
+
+                <div class="floating-card top">
+                  <h4>Skin, Hair & Nails</h4>
+                  <p>Luxury treatments with premium care</p>
+                </div>
+
+                <div class="floating-card bottom">
+                  <h4>Laser Hair Removal</h4>
+                  <p>Smooth, confident, modern beauty solution</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="about">
+            <div class="container about-grid reveal">
+              <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=1200&auto=format&fit=crop" alt="Salon interior">
+              </div>
+
+              <div class="about-content">
+                <h4>About Shraddha Beauty Salon</h4>
+                <p>
+                  Shraddha Beauty Salon is designed for clients who love professional beauty services with a classy,
+                  modern and comfortable experience. From hair styling to facials, nail care,
+                  scalp treatments, hair repair treatments, and laser hair removal, every service is tailored with care.
+                </p>
+                <p>
+                  Our goal is simple — to help every client feel beautiful, confident, and refreshed with quality service,
+                  attention to detail, and a premium salon atmosphere.
+                </p>
+
+                <div class="about-points">
+                  <div>✨ Professional beauty and grooming services</div>
+                  <div>✨ Nail care, scalp care and hair repair </div>
+                  <div>✨ Advanced laser hair removal available</div>
+                  <div>✨ Personalized Beauty Care</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="services">
+            <div class="container">
+              <div class="section-head reveal">
+                <span class="tag">Our Services</span>
+                <h3>Beauty Services Crafted for You</h3>
+                <p>Explore our premium salon services. Click any service to book and it will auto-fill inside the form.</p>
+              </div>
+
+              <div class="services-grid">
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="hair.png" alt="Hair services">
+                    <span class="service-badge">Hair Care</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">✂️</div>
+                    <h4>Hair Services</h4>
+                    <p>Elegant cuts, styling and premium hair care designed for every look and event.</p>
+                    <ul class="service-list">
+                      <li>Hair Cut & Styling</li>
+                      <li>Hair Spa</li>
+                      <li>Hair Smoothening</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Hair Services')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="skin.webp" alt="Facial services">
+                    <span class="service-badge">Skin Care</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">💆‍♀️</div>
+                    <h4>Facials & Skin Care</h4>
+                    <p>Glow-enhancing skincare treatments for fresh, healthy and radiant-looking skin.</p>
+                    <ul class="service-list">
+                      <li>Cleanup</li>
+                      <li>Gold / Diamond Facial</li>
+                      <li>Hydra Facial</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Facials & Skin Care')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="laser.webp" alt="Laser hair removal">
+                    <span class="service-badge">Laser Care</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">✨</div>
+                    <h4>Laser Hair Removal</h4>
+                    <p>Advanced laser hair removal service for smooth, clean and long-lasting results.</p>
+                    <ul class="service-list">
+                      <li>Upper Lip / Chin</li>
+                      <li>Underarms</li>
+                      <li>Full Body Consultation</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Laser Hair Removal')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="makeup.png" alt="Makeup services">
+                    <span class="service-badge">Bridal & Party</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">💄</div>
+                    <h4>Makeup Services</h4>
+                    <p>Soft glam, party makeup and special occasion beauty for your perfect look.</p>
+                    <ul class="service-list">
+                      <li>Party Makeup</li>
+                      <li>Engagement Makeup</li>
+                      <li>Bridal Makeup</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Makeup Services')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="waxing.webp" alt="Waxing services">
+                    <span class="service-badge">Smooth Care</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">🪄</div>
+                    <h4>Waxing Services</h4>
+                    <p>Clean, hygienic and comfortable waxing solutions for smooth skin and confidence.</p>
+                    <ul class="service-list">
+                      <li>Regular Waxing</li>
+                      <li>Bikini Waxing</li>
+                      <li>Full Arms / Legs</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Waxing Services')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="mehind.jpg" alt="Mehendi services">
+                    <span class="service-badge">Traditional Art</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">🌿</div>
+                    <h4>Mehendi Art</h4>
+                    <p>Beautiful mehendi designs for bridal, festive and family occasions with elegant detailing.</p>
+                    <ul class="service-list">
+                      <li>Simple Mehendi</li>
+                      <li>Arabic Mehendi</li>
+                      <li>Bridal Mehendi</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Mehendi Art')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1200&auto=format&fit=crop" alt="Nail services">
+                    <span class="service-badge">Nail Care</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">💅</div>
+                    <h4>Nail Services</h4>
+                    <p>Beautiful nail styling and grooming for a polished, elegant and modern look.</p>
+                    <ul class="service-list">
+                      <li>Manicure</li>
+                      <li>Pedicure</li>
+                      <li>Nail Art & Extensions</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Nail Services')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="scalp.png" alt="Scalp treatment">
+                    <span class="service-badge">Scalp Care</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">🧴</div>
+                    <h4>Scalp & Dandruff Treatment</h4>
+                    <p>Targeted scalp care designed to reduce dandruff, refresh the scalp and improve hair health.</p>
+                    <ul class="service-list">
+                      <li>Basic Dandruff Treatment</li>
+                      <li>Scalp Detox Care</li>
+                      <li>Advanced Scalp Treatment</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Scalp & Dandruff Treatment')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="service-card reveal">
+                  <div class="service-image">
+                    <img src="repair.png" alt="Hair repair treatment">
+                    <span class="service-badge">Repair Care</span>
+                  </div>
+                  <div class="service-content">
+                    <div class="service-icon">🫧</div>
+                    <h4>Hair Repair Treatment</h4>
+                    <p>Deep nourishing treatments to repair damaged hair, restore softness and improve strength.</p>
+                    <ul class="service-list">
+                      <li>Damage Repair Therapy</li>
+                      <li>Protein Hair Treatment</li>
+                      <li>Deep Nourishing Spa</li>
+                    </ul>
+                    <div class="service-actions">
+                      <button class="book-btn" onclick="selectService('Hair Repair Treatment')">📅 Book Now</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="container">
+              <div class="section-head reveal">
+                <span class="tag">Why Choose Us</span>
+                <h3>Professional Beauty with a Premium Feel</h3>
+                <p>We combine beauty expertise, client comfort and a polished salon experience that feels modern and luxurious.</p>
+              </div>
+
+              <div class="why-grid">
+                <div class="why-card reveal">
+                  <div class="why-icon">🌸</div>
+                  <h4>Elegant Experience</h4>
+                  <p>Premium environment and customer-first service.</p>
+                </div>
+                <div class="why-card reveal">
+                  <div class="why-icon">🧴</div>
+                  <h4>Quality Care</h4>
+                  <p>Careful service with attention to hygiene and comfort.</p>
+                </div>
+                <div class="why-card reveal">
+                  <div class="why-icon">✨</div>
+                  <h4>Laser Beauty</h4>
+                  <p>Modern laser hair removal available for smooth results.</p>
+                </div>
+                <div class="why-card reveal">
+                  <div class="why-icon">💖</div>
+                  <h4>Client Satisfaction</h4>
+                  <p>Every look is customized to suit your beauty goals.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="gallery">
+            <div class="container">
+              <div class="section-head reveal">
+                <span class="tag">Gallery</span>
+                <h3>Beauty Inspiration</h3>
+                
+              </div>
+
+              <div class="gallery-grid">
+                <div class="gallery-item reveal">
+                  <img src="shop.jpeg" alt="Shop">
+                </div>
+                <div class="gallery-item reveal">
+                  <img src="service2.jpeg" alt="Client Service">
+                </div>
+                <div class="gallery-item reveal">
+                  <img src="client.png" alt="Beauty gallery 3">
+                </div>
+                <div class="gallery-item reveal">
+                  <img src="service1.jpeg" alt="Client Service">
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="booking">
+            <div class="container booking-wrap">
+              <div class="booking-info reveal">
+                <h4>Book Your Appointment</h4>
+                <p>Fill the form and send your appointment request directly to WhatsApp.</p>
+
+                <ul>
+                  <li>📍 Shraddha Beauty Salon, Thane, Maharashtra</li>
+                  <li>📞 WhatsApp: +91 93726 91789</li>
+                  <li>📞 WhatsApp: +91 86919 85363</li>
+                  <li>✨ Hair, Skin, Nails, Scalp, Hair Repair & Laser Hair Removal</li>
+                </ul>
+
+                <div class="booking-socials">
+                  <a href="https://wa.me/919372691789" target="_blank">WhatsApp 1</a>
+                  <a href="https://wa.me/918691985363" target="_blank">WhatsApp 2</a>
+                  <a href="https://www.instagram.com/nail.sbyshraddha?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"" target="_blank">Instagram 1</a>
+                  <a href="https://www.instagram.com/makeover_by_shraddha_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram 2</a>
+                  <a href="https://www.instagram.com/shraddhabeauty_salon?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==k">Instagram 3</a>
+                </div>
+              </div>
+
+              <div class="booking-form-card reveal">
+                <h4>Appointment Form</h4>
+                <p>Your selected service will appear automatically when you click “Book Now”.</p>
+
+                <form id="bookingForm">
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="name">Full Name</label>
+                      <input type="text" id="name" placeholder="Enter full name" required>
+                    </div>
+
+                    <div class="field">
+                      <label for="phone">Phone Number</label>
+                      <input type="tel" id="phone" placeholder="Enter phone number" required>
+                    </div>
+                  </div>
+
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="service">Selected Service</label>
+                      <select id="service" required>
+                        <option value="">Choose a service</option>
+                        <option>Hair Services</option>
+                        <option>Facials & Skin Care</option>
+                        <option>Laser Hair Removal</option>
+                        <option>Makeup Services</option>
+                        <option>Waxing Services</option>
+                        <option>Mehendi Art</option>
+                        <option>Nail Services</option>
+                        <option>Scalp & Dandruff Treatment</option>
+                        <option>Hair Repair Treatment</option>
+                      </select>
+                    </div>
+
+                    <div class="field">
+                      <label for="date">Preferred Date</label>
+                      <input type="date" id="date" required>
+                    </div>
+                  </div>
+
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="time">Preferred Time</label>
+                      <input type="time" id="time" required>
+                    </div>
+
+                    <div class="field">
+                      <label for="locationField">Location / Area</label>
+                      <input type="text" id="locationField" placeholder="Enter your area or address">
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="message">Additional Details</label>
+                    <textarea id="message" placeholder="Write any skin, hair, nail, scalp or laser details here..."></textarea>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary submit-btn">Send Appointment Request</button>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <section id="location">
+            <div class="container">
+              <div class="section-head reveal">
+                <span class="tag">Salon Location</span>
+                <h3>Find Us Easily</h3>
+                
+              </div>
+
+              <div class="map-wrap">
+                <div class="location-card reveal">
+                  <h4>Visit Shraddha Beauty Salon</h4>
+                  <p><strong>Address:</strong> shop no 5, near swad hotel, D'Souza Wadi, Shivaji Nagar, Wagle Industrial Estate, Thane West, Maharashtra 400604</p>
+                  <p>
+                    Tap below to open the exact salon location in Google Maps and navigate directly.
+                  </p>
+
+                  <div class="multi-links dark">
+                    <a href="https://maps.app.goo.gl/ZjY2hNXHw3XvJDnk9" target="_blank">Open in Google Maps</a>
+                    <a href="https://maps.app.goo.gl/ZjY2hNXHw3XvJDnk9" target="_blank">Navigate Now</a>
+                  </div>
+                </div>
+
+                <div class="map-card reveal">
+                  <iframe
+                    class="map-frame"
+                    src="https://www.google.com/maps?q=19.1870579,72.953202&z=18&output=embed"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="contact">
+            <div class="container">
+              <div class="section-head reveal">
+                <span class="tag">Contact Us</span>
+                <h3>Let’s Connect</h3>
+                <p> Contact through WhatsApp, Instagram or phone for appointments and beauty enquiries.</p>
+              </div>
+
+              <div class="contact-cards">
+                <div class="contact-card reveal">
+                  <div class="icon">📞</div>
+                  <h4>WhatsApp 1</h4>
+                  <p><a href="https://wa.me/919372691789" target="_blank">+91 93726 91789</a></p>
+                </div>
+
+                <div class="contact-card reveal">
+                  <div class="icon">📞</div>
+                  <h4>WhatsApp 2</h4>
+                  <p><a href="https://wa.me/918691985363" target="_blank">+91 86919 85363</a></p>
+                </div>
+
+                <div class="contact-card reveal">
+                  <div class="icon">📍</div>
+                  <h4>Location</h4>
+                  <p><a href="https://maps.app.goo.gl/ZjY2hNXHw3XvJDnk9" target="_blank">Swad hotel,Shivaji Nagar, Wagle Estate,Thane West,Maharashtra 400604</a></p>
+                </div>
+              </div>
+
+              <div style="height:18px;"></div>
+
+              <div class="contact-cards">
+                <div class="contact-card reveal">
+                  <div class="icon">📸</div>
+                  <h4>Instagram 1</h4>
+                  <p><a href="https://www.instagram.com/nail.sbyshraddha?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">@nailsbyshraddha</a></p>
+                </div>
+
+                <div class="contact-card reveal">
+                  <div class="icon">📸</div>
+                  <h4>Instagram 2</h4>
+                  <p><a href="https://www.instagram.com/makeover_by_shraddha_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">@shraddha make-up artist</a></p>
+                </div>
+
+                <div class="contact-card reveal">
+                  <div class="icon">📸</div>
+                  <h4>Instagram 3</h4>
+                  <p><a href="https://www.instagram.com/shraddhabeauty_salon?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">@shraddhabeautysalon</a></p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer>
+          <div class="container footer-wrap">
+            <p>© 2026 Shraddha Beauty Salon. All rights reserved.</p>
+            <div class="footer-links">
+              <a href="#home">Home</a>
+              <a href="#services">Services</a>
+              <a href="#booking">Book Now</a>
+              <a href="#location">Location</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <a class="floating-whatsapp" href="https://wa.me/919372691789" target="_blank" aria-label="WhatsApp">💬</a>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const stage = document.getElementById("phoneDesktopStage");
+    const scaler = document.getElementById("phoneDesktopScale");
+
+    function updateDesktopPhoneScale() {
+      const desktopWidth = 1280;
+      const viewportWidth = window.innerWidth;
+
+      if (viewportWidth < desktopWidth) {
+        document.body.classList.add("mobile-desktop-mode");
+
+        const scale = viewportWidth / desktopWidth;
+        document.documentElement.style.setProperty("--phoneScale", scale);
+
+        scaler.style.transform = `scale(${scale})`;
+        scaler.style.height = `${scaler.scrollHeight}px`;
+        stage.style.height = `${scaler.scrollHeight * scale}px`;
+      } else {
+        document.body.classList.remove("mobile-desktop-mode");
+        scaler.style.transform = "none";
+        scaler.style.height = "auto";
+        stage.style.height = "auto";
+      }
+    }
+
+    window.addEventListener("load", updateDesktopPhoneScale);
+    window.addEventListener("resize", updateDesktopPhoneScale);
+    window.addEventListener("orientationchange", updateDesktopPhoneScale);
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    function selectService(serviceName) {
+      const serviceSelect = document.getElementById("service");
+      serviceSelect.value = serviceName;
+      document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+    }
+
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    const bookingForm = document.getElementById("bookingForm");
+
+    bookingForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const service = document.getElementById("service").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const location = document.getElementById("locationField").value;
+      const message = document.getElementById("message").value;
+
+      const whatsappMessage =
+`Hello Shraddha Beauty Salon,
+I want to book an appointment.
+
+Name: ${name}
+Phone: ${phone}
+Service: ${service}
+Preferred Date: ${date}
+Preferred Time: ${time}
+Location/Area: ${location}
+Additional Details: ${message}`;
+
+      const whatsappURL = `https://wa.me/919372691789?text=${encodeURIComponent(whatsappMessage)}`;
+      window.open(whatsappURL, "_blank");
+    });
+  </script>
+</body>
+</html>
